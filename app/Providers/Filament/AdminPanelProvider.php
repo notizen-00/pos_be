@@ -17,6 +17,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Rupadana\ApiService\ApiServicePlugin;
+use Filament\Navigation\NavigationGroup;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -53,6 +55,21 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+                ApiServicePlugin::make(),   
+            ])
+            ->navigationGroups([
+            NavigationGroup::make()
+                ->label('Laporan')
+                ->icon('heroicon-o-clipboard-document-list'),
+            NavigationGroup::make()
+                ->label(fn (): string => __('navigation.settings'))
+                ->icon('heroicon-o-cog-6-tooth')
+                ->collapsed(),
+            ])
+            ->brandName('Tcap Daoen POS')
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }
