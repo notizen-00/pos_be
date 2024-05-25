@@ -69,7 +69,11 @@ class AdminPanelProvider extends PanelProvider
                 ->icon('heroicon-o-cog-6-tooth')
                 ->collapsed(),
             ])
+            ->spa()
             ->brandName('Tcap Daoen POS')
+            // ->brandLogo(asset('img/logo.jpg'))
+            ->brandLogoHeight('2rem')
+            ->sidebarCollapsibleOnDesktop()
             ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }

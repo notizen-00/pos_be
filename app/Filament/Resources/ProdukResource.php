@@ -24,6 +24,10 @@ class ProdukResource extends Resource
     
     protected static ?string $navigationGroup = 'Manajemen Toko';
 
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::count();
+}
     public static function form(Form $form): Form
     {
         return $form
@@ -58,7 +62,7 @@ class ProdukResource extends Resource
                     Forms\Components\FileUpload::make('foto')
                     ->label('Foto Produk (optional)')
                     ->directory('foto_produk')
-                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png','image/webp'])
                     ->imagePreviewHeight('150')
                     ->loadingIndicatorPosition('left')
                     ->panelAspectRatio('2:1')
@@ -83,7 +87,9 @@ class ProdukResource extends Resource
                 Tables\Columns\TextColumn::make('kategori.nama_kategori')
                 ->searchable()
                 ->badge()
-                ->toggleable(),
+                ->icon('heroicon-m-sparkles')
+                ->toggleable()
+                ,
                 Tables\Columns\TextColumn::make('harga')
                 ->sortable()
                 ->money('IDR')

@@ -44,6 +44,10 @@ class ListProduks extends ListRecords
             $kategori = KategoriProduk::all();
             $tabs = [];
             $tabs[] = Tab::make('Semua');
+            $tabs[] = Tab::make('Favorit')
+                        ->modifyQueryUsing(function (Builder $query) use ($kategori){
+                            $query->where('favorit',true);
+                        });
             foreach ($kategori as $kategori) {
                 $tabs[] = Tab::make($kategori->nama_kategori)
                     ->modifyQueryUsing(function (Builder $query) use ($kategori) {
