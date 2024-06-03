@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_transaksi');
             $table->integer('pelanggan_id')->nullable();
+            $table->string('nama_pelanggan')->nullable();
             $table->integer('meja')->nullable();
             $table->integer('author_id');
             $table->integer('shift_id');
@@ -31,7 +32,8 @@ return new class extends Migration
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
-            // Other columns for detail_transaksi...
+            $table->foreignId('product_id');
+            $table->int('quantity');
             $table->timestamps();
         });
     }

@@ -52,4 +52,9 @@ class Produk extends Model
     {
         $this->attributes['updated_at'] = Carbon::parse($value)->format('Y-m-d H:i:s');
     }
+
+    public function detail_transaksi()
+    {
+        return $this->hasMany(DetailTransaksi::class);
+    }
 }
