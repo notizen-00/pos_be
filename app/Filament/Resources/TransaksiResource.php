@@ -82,7 +82,6 @@ class TransaksiResource extends Resource
                                     Components\TextInput::make('subtotal')
                                         ->label('Subtotal')
                                         ->disabled()
-
                                         ->dehydrated()
                                         ->default(0),
                                 ])

@@ -16,7 +16,8 @@ class DetailTransaksi extends Pivot
     protected $fillable = [
         'produk_id',
         'quantity',
-        'transaksi_id'
+        'transaksi_id',
+        'subtotal'
     ];
 
     protected static function booted(): void
