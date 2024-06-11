@@ -22,7 +22,7 @@ class ProdukResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-archive-box';
     
-    protected static ?string $navigationGroup = 'Manajemen Toko';
+    protected static ?string $navigationGroup = 'Manajemen Tokos';
 
     public static function getNavigationBadge(): ?string
 {
