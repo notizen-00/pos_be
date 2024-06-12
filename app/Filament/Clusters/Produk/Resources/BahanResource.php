@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Pages\SubNavigationPosition;
@@ -27,7 +28,15 @@ class BahanResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make('Data Bahan')
+                ->description('Isikan data bahan ')
+                ->schema([
+                    Forms\Components\TextInput::make('nama_bahan')
+                    ->required(),
+                    Forms\Components\TextInput::make('satuan')
+                    ->required(),
+
+                ])
             ]);
     }
 
@@ -35,7 +44,13 @@ class BahanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama_bahan')
+                ->label('Nama Bahan'),
+                Tables\Columns\TextColumn::make('satuan')
+                ->label('Satuan'),
+                Tables\Columns\TextColumn::make('stok')
+                ->label('Stok')
+                ->suffix(fn(Bahan $record) => ' '.$record->satuan),
             ])
             ->filters([
                 //

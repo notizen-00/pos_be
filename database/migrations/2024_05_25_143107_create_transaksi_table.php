@@ -32,8 +32,48 @@ return new class extends Migration
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
-            $table->foreignId('product_id');
-            $table->int('quantity');
+            $table->foreignId('produk_id')->constrained('produk');
+            $table->integer('quantity');
+            $table->integer('subtotal');
+            $table->timestamps();
+        });
+
+        Schema::create('penjualan',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nomor_penjualan');
+            $table->double('total_penjualan',8,2);
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
+            $table->string('deskripsi')->nullable();
+            $table->timestamps(); 
+        });
+
+        Schema::create('detail_penjualan',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('penjualan_id')->constrained('penjualan')->onDelete('cascade');
+            $table->foreignId('bahan_produk_id')->constrained('bahan_produk')->onDelete('cascade');
+            $table->integer('quantity'); 
+            $table->double('harga_asset',8,2);
+            $table->double('subtotal',8,2);
+            $table->timestamps();
+        });
+
+        Schema::create('pembelian',function(Blueprint $table){
+            $table->id();
+            $table->string('nomor_pembelian');
+            $table->double('total_pembelian',8,2);
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
+            $table->string('deskripsi')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('detail_pembelian',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('pembelian_id')->constrained('pembelian')->onDelete('cascade');
+            $table->foreignId('bahan_produk_id')->constrained('bahan_produk')->onDelete('cascade');
+            $table->integer('quantity');
+            $table->double('harga_beli',8,2);
+            $table->double('subtotal',8,2);
             $table->timestamps();
         });
     }

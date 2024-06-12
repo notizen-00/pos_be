@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Scopes\KategoriDetailScope;
 use Carbon\Carbon;
+use App\Models\Resep;
+use App\Models\Bahan;
 
 class Produk extends Model
 {
@@ -28,6 +30,16 @@ class Produk extends Model
     public function kategori()
     {
         return $this->belongsTo(KategoriProduk::class);
+    }
+
+
+
+    public function bahan_produk()
+    {
+        return $this->belongsToMany(Bahan::class, 'resep_produk','produk_id','bahan_produk_id')
+                    ->using(Resep::class)
+                    ->withPivot('quantity_resep');
+                    
     }
 
     public function getCreatedAtAttribute($value)
