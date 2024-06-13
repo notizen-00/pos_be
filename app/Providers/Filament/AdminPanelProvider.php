@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Rupadana\ApiService\ApiServicePlugin;
 use Filament\Navigation\NavigationGroup;
+use Filament\Support\Enums\MaxWidth;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -75,6 +76,7 @@ class AdminPanelProvider extends PanelProvider
             // ->brandLogo(asset('img/logo.jpg'))
             ->brandLogoHeight('2rem')
             ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth(MaxWidth::Full)
             ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }

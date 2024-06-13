@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Transaksi::class,'author_id','id');
     }
+
+    public function StokMasuk()
+    {
+        return $this->hasOne(StokMasuk::class,'author_id','id');
+    }
 }

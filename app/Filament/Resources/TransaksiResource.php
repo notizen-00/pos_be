@@ -89,6 +89,7 @@ class TransaksiResource extends Resource
                                 ->collapsible()
                                 ->live()
                                 ->itemLabel(fn (array $state): ?string => "Subtotal : Rp. ".number_format($state['subtotal']) ?? null)
+                                ->dehydrated()
                                 
                             ]),
 

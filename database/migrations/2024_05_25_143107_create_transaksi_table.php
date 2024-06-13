@@ -45,6 +45,7 @@ return new class extends Migration
             $table->double('total_penjualan',8,2);
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->string('deskripsi')->nullable();
+            $table->dateTime('tanggal_penjualan');
             $table->timestamps(); 
         });
 
@@ -64,6 +65,7 @@ return new class extends Migration
             $table->double('total_pembelian',8,2);
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->string('deskripsi')->nullable();
+            $table->dateTime('tanggal_pembelian');
             $table->timestamps();
         });
 
