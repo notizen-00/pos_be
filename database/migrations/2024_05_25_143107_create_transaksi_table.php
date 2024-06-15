@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama_pelanggan')->nullable();
             $table->integer('meja')->nullable();
             $table->integer('author_id');
-            $table->integer('shift_id');
-            $table->enum('status',['open','closed','cancel']);
+            $table->integer('shift_id')->nullable();
+            $table->string('status');
             $table->integer('total');
             $table->string('deskripsi')->nullable();
             $table->integer('total_tambahan')->nullable();

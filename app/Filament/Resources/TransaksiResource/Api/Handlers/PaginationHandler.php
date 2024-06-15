@@ -17,6 +17,7 @@ class PaginationHandler extends Handlers {
         $model = static::getModel();
 
         $query = QueryBuilder::for($query)
+        ->orderBy('created_at', 'desc')
         ->allowedFields($model::$allowedFields ?? [])
         ->allowedSorts($model::$allowedSorts ?? [])
         ->allowedFilters($model::$allowedFilters ?? [])

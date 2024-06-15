@@ -44,6 +44,7 @@ class ResepProdukRelationManager extends RelationManager
             ->headerActions([
                 // Tables\Actions\CreateAction::make(),
                 Tables\Actions\AttachAction::make()
+                ->preloadRecordSelect()
                 ->form(fn (AttachAction $action): array => [
                 $action->getRecordSelect(),
                 Forms\Components\TextInput::make('quantity_resep')->integer()->required(),

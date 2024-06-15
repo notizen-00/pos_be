@@ -35,6 +35,8 @@ class BahanResource extends Resource
                     ->required(),
                     Forms\Components\TextInput::make('satuan')
                     ->required(),
+                    Forms\Components\TextInput::make('stok')
+                    ->required()
 
                 ])
             ]);

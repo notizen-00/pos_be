@@ -17,6 +17,7 @@ class StokKeluar extends Model
         'nomor_penjualan',
         'total_penjualan',
         'author_id',
+        'tanggal_penjualan',
         'deskripsi'
     ];
 

@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Support\RawJs;
+use PHPUnit\Framework\Constraint\IsNull;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ProdukResource extends Resource
 {
@@ -96,7 +99,14 @@ class ProdukResource extends Resource
             Tables\Columns\ToggleColumn::make('status')
             ->sortable()
             ->toggleable(),
-            
+            Tables\Columns\TextColumn::make('bahan_produk.nama_bahan')
+            ->label('Resep')
+            ->default($state ?? 0)
+            // ->formatStateUsing(fn(Produk $record) => count($record->bahan_produk) )
+            ->color(function($state){ return $state != '0'  ? 'success' : 'danger'; })
+            ->badge()
+            ->searchable()
+            ->toggleable(),
             Tables\Columns\ToggleColumn::make('favorit')
             ->sortable()
             ->toggleable(),

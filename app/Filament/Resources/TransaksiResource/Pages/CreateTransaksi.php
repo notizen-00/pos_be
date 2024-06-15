@@ -14,6 +14,7 @@ use App\Models\StokKeluar;
 use App\Models\DetailPenjualan;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DetailPembelian;
+use Carbon\Carbon;
 
 class CreateTransaksi extends CreateRecord
 {
@@ -41,7 +42,7 @@ protected function handleRecordCreation(array $data): Model
 
         foreach ($data['detail_transaksi'] as $i) {
             $this->updateStokBahan($i['produk_id'], $i['quantity']);
-            $this->insertPenjualanBahan($transaksi, $i['produk_id'], $i['quantity']);
+            $this->insertPenjualanBahan($transaksi, $i['produk_id'], $i['quantity'],$data);
         }
 
         DB::commit();
@@ -86,6 +87,7 @@ protected function insertPenjualanBahan(Model $transaksi, int $produk_id, int $q
         'nomor_penjualan' => static::generateNomorPenjualan(),
         'total_penjualan' => $transaksi->total,
         'author_id' => auth()->user()->id,
+        'tanggal_penjualan' => Carbon::now(),
         'deskripsi' => 'Penjualan Transaksi ' . $transaksi->nomor_transaksi,
     ];
 
